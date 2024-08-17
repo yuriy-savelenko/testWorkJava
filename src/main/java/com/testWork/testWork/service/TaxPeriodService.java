@@ -2,7 +2,9 @@ package com.testWork.testWork.service;
 
 import com.testWork.testWork.entity.TaxPeriod;
 import com.testWork.testWork.repository.TaxPeriodRepository;
+import com.testWork.testWork.utils.DateFormatter;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class TaxPeriodService {
     }
 
     public List<TaxPeriod> findOverlappingTaxPeriods(LocalDate startDate, LocalDate endDate) {
-        return taxPeriodRepository.findOverlappingPeriods(startDate, endDate);
+        return taxPeriodRepository.findOverlappingPeriods(DateFormatter.formatDateToFirstDayOfMonth(startDate),
+                DateFormatter.formatDateToLastDayOfMonth(endDate));
     }
 }

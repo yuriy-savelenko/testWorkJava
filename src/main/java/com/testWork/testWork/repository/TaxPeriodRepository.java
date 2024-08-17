@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface TaxPeriodRepository extends JpaRepository<TaxPeriodDTO, Long> {
 
-    @Query("SELECT t FROM TaxPeriod t WHERE " +
-            "(t.startDate >= :startDate AND t.endDate <= :endDate)")
+    @Query("SELECT tp FROM TaxPeriod tp WHERE tp.startDate >= :startDate AND tp.endDate <= :endDate")
     List<TaxPeriod> findOverlappingPeriods(LocalDate start, LocalDate end);
 
 }
